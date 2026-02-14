@@ -8,7 +8,7 @@
 
 ## Alcance
 
-## Herramientas(vs code, python, wsl, docker, strenlit, scienti)
+## Herramientas(vs code, python, wsl, docker, strenlit, scientilearn)
 
 ## Solucion
 

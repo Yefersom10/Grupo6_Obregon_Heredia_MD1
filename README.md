@@ -1,4 +1,4 @@
-# Grupo8-Obregon-Heredia
+# Grupo6-Obregon-Heredia
 
 ## Descripcion del proyecto
 

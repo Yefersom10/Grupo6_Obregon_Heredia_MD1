@@ -25,7 +25,7 @@ Grupo6_Obregon_Heredia_MD1/
 
 ---
 
-## 📌 Descripción de Carpetas
+##  Descripción de Carpetas
 
 ### 🔹 Etl-Prueba
 

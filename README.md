@@ -1,4 +1,4 @@
-# 📊 Grupo6_Obregon_Heredia_MD1  
+#  Grupo6_Obregon_Heredia_MD1  
 
 Repositorio correspondiente a la materia **Minería de Datos**.  
 En este proyecto se desarrollan procesos de **Extracción, Transformación y Carga (ETL)** utilizando APIs públicas, aplicando los conocimientos adquiridos en clase.

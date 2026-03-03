@@ -188,6 +188,7 @@ ETL-WEATHERSTACK/
 
 - Buenas prácticas en proyectos de datos
 
+# 👨‍💻 Autor
+Yeferson Esmid Heredia Perdomo  
+Nicolas Obregon Rojas
 
-
-✅ Proyecto listo para entrega académica

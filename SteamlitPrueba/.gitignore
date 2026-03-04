@@ -5,6 +5,7 @@ __pycache__/
 *.egg-info/
 
 # Variables de entorno
+.streamlit/secrets.toml
 .env
 .env.local
 

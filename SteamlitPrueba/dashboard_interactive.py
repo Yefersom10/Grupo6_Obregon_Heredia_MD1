@@ -11,8 +11,6 @@ sys.path.insert(0, '.')
 from scripts.database import SessionLocal, engine, Base
 from scripts.models import Ciudad, RegistroClima
 
-# 🔥 Crear tablas si no existen
-Base.metadata.create_all(bind=engine)
  
 st.set_page_config(
     page_title="Dashboard Interactivo",

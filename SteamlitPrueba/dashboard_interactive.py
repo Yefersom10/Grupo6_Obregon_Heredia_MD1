@@ -9,9 +9,8 @@ import sys
 
 sys.path.insert(0, '.')
 # DIAGNÓSTICO TEMPORAL - borrar después
-import streamlit as st
-st.write("🔍 SECRET:", st.secrets.get("DATABASE_URL", "NO ENCONTRADO")[:50])
-st.write("🔍 ENV:", os.environ.get("DATABASE_URL", "NO ENCONTRADO")[:50])
+st.set_page_config(page_title="Debug", layout="wide")
+st.write("**SECRET:**", str(st.secrets.get("DATABASE_URL", "NO ENCONTRADO"))[:80])
 st.stop()
 from scripts.database import SessionLocal, engine, Base
 from scripts.models import Ciudad, RegistroClima

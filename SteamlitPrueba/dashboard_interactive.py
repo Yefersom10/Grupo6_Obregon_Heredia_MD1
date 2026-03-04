@@ -13,7 +13,8 @@ from scripts.models import Ciudad, RegistroClima
 
 # 🔥 Crear tablas si no existen
 Base.metadata.create_all(bind=engine)
-
+ 
+ 
 st.set_page_config(
     page_title="Dashboard Interactivo",
     page_icon="🎛️",

@@ -1,12 +1,24 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
 
-DATABASE_URL = "sqlite:///clima-pitacho.db"
+load_dotenv()
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False}
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Se usa SQLite par el modo local y PostgreSQL para producción
+if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///clima-pitacho.db"
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False}
+    )
+else:
+    engine = create_engine(
+        DATABASE_URL,
+        pool_pre_ping=True
+    )
 
 SessionLocal = sessionmaker(
     autocommit=False,

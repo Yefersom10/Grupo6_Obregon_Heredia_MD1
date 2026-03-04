@@ -20,7 +20,12 @@ st.set_page_config(
 
 st.title("🎛️ Dashboard Interactivo - Control Total")
 
-db = SessionLocal()
+try:
+    db = SessionLocal()
+    db.execute(text("SELECT 1"))  # prueba de conexión
+except Exception as e:
+    st.error(f"❌ No se pudo conectar a la base de datos: {e}")
+    st.stop()
 
 # =====================================================
 # SIDEBAR CONTROLES

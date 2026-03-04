@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from sqlalchemy import text
 from datetime import datetime, timedelta
 from sqlalchemy import and_
 import sys

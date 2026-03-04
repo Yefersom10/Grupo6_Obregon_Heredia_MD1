@@ -7,11 +7,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import and_
 import sys
 
-sys.path.insert(0, '.')
-# DIAGNÓSTICO TEMPORAL - borrar después
-st.set_page_config(page_title="Debug", layout="wide")
-st.write("**SECRET:**", str(st.secrets.get("DATABASE_URL", "NO ENCONTRADO"))[:80])
-st.stop()
+
 from scripts.database import SessionLocal, engine, Base
 from scripts.models import Ciudad, RegistroClima
 

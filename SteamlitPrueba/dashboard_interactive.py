@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 from sqlalchemy import and_
 import sys
 
-
+from scripts.database import Base, engine
+Base.metadata.create_all(bind=engine)
 from scripts.database import SessionLocal, engine, Base
 from scripts.models import Ciudad, RegistroClima
 

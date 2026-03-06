@@ -1,156 +1,217 @@
-#  Grupo6_Obregon_Heredia_MD1  
+# 📊 Grupo6_Obregon_Heredia_MD1
 
-Repositorio correspondiente a la materia **Minería de Datos**.  
-En este proyecto se desarrollan procesos de **Extracción, Transformación y Carga (ETL)** utilizando APIs públicas, aplicando los conocimientos adquiridos en clase.
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-purple)
+![API](https://img.shields.io/badge/API-Data%20Source-green)
+![Status](https://img.shields.io/badge/Status-Academic%20Project-orange)
+
+Repositorio del proyecto desarrollado para la asignatura **Minería de Datos**.
+
+En este proyecto se implementan procesos **ETL (Extract, Transform, Load)** utilizando **APIs públicas**, almacenamiento en **PostgreSQL** y visualización de datos mediante **Streamlit**.
+
+El repositorio contiene dos tipos de implementaciones:
+
+- **Procesos ETL ejecutados en local**
+- **Aplicaciones de visualización desplegadas en Streamlit Cloud**
 
 ---
 
-## 👥 Integrantes
+# 👥 Integrantes
 
-- Nicolas Obregón  
-- Yeferson Heredia  
+- **Nicolás Obregón**  
+- **Yeferson Heredia**
 
 ---
 
-## 📁 Estructura del Repositorio
-~~~
+# 📁 Estructura del Repositorio
+
+```
 Grupo6_Obregon_Heredia_MD1/
 │
-├── Etl-Prueba/
-├── Etl-Projecto/
-├── SteamlitPrueba/
-├── SteamlitProyecto/
+├── etl-prueba/
+│ └── Proceso ETL de práctica
+│
+├── etl-proyecto/
+│ └── ETL principal del proyecto
+│
+├── streamlitPrueba/
+│ └── Dashboard de clima
+│
+├── streamlitProyecto/
+│ └── Dashboard de películas
+│
 └── README.md
-~~~
+
+````
+
+# 📂 Descripción de Carpetas
+
+## 🔹 etl-prueba
+
+Implementación de un **proceso ETL guiado por el docente** para comprender la estructura básica de un pipeline de datos.
+
+**Características**
+
+- Tipo: ETL de práctica  
+- Fuente de datos: API de clima  
+- Ejecución: Local  
+
+**Objetivos**
+
+- Consumir datos desde una API
+- Transformar y limpiar datos
+- Guardar información en PostgreSQL
 
 ---
 
-##  Descripción de Carpetas
+## 🔹 etl-proyecto
 
-### 🔹 Etl-Prueba
+Proyecto principal desarrollado por el grupo.
 
-Proyecto desarrollado siguiendo la guía del docente.
+Se implementa un **pipeline ETL completo** para recolectar información de películas utilizando **OMDb API**.
 
-- **Tipo:** ETL guiado  
-- **API utilizada:** API de Clima  
-- **Objetivo:**  
-  Implementar un proceso ETL básico para:
-  - Extraer datos desde una API pública
-  - Transformar y limpiar los datos
-  - Cargar la información en una base de datos  
+**Datos obtenidos**
 
-- **Enfoque:**  
-  Comprender la estructura y funcionamiento de un proceso ETL, incluyendo manejo básico de errores.
+- Título
+- Año
+- Género
+- Actores
+- Director
+- Calificación
+- Información adicional
 
----
+**Objetivos**
 
-### 🔹 Etl-Projecto
-
-Proyecto desarrollado de manera autónoma por el grupo.
-
-- **Tipo:** ETL implementado por el equipo  
-- **API utilizada:** API de Películas (OMDb API)  
-- **Objetivo:**  
-  Construir un proceso ETL completo que:
-  - Extraiga información de películas (género, actores, calificaciones, año, etc.)
-  - Transforme y normalice los datos
-  - Almacene la información en una base de datos estructurada  
-
-- **Enfoque:**  
-  - Manejo de errores  
-  - Normalización de datos  
-  - Diseño optimizado de base de datos  
-  - Preparación de datos para análisis en minería de datos  
+- Construir un pipeline ETL completo
+- Normalizar datos
+- Diseñar una base de datos optimizada
+- Preparar los datos para análisis
 
 ---
 
-### 🔹 SteamlitPrueba
+## 🔹 streamlitPrueba
 
-Aplicación desarrollada con **Streamlit** para visualizar los datos del proyecto de prueba (clima).
+Aplicación web desarrollada con **Streamlit** para visualizar datos climáticos obtenidos en el ETL de prueba.
 
-- Visualización de datos climáticos  
-- Gráficas dinámicas  
-- Interfaz web interactiva  
+Funcionalidades:
 
----
-
-### 🔹 SteamlitProyecto
-
-Aplicación desarrollada con **Streamlit** para visualizar los datos del proyecto principal (películas).
-
-- Consulta de películas  
-- Visualización de géneros y calificaciones  
-- Análisis exploratorio de datos  
-- Interfaz amigable para el usuario  
+- Visualización de datos
+- Gráficas interactivas
+- Exploración de información
 
 ---
 
-## ⚙️ Tecnologías Utilizadas
+## 🔹 streamlitProyecto
 
-- Python  
-- Requests  
-- Pandas  
-- PostgreSQL  
-- SQL  
-- Streamlit  
-- JSON  
-- Git & GitHub  
+Aplicación web desarrollada con **Streamlit** para visualizar y analizar datos de películas.
 
----
+Funcionalidades:
 
-## 🔄 Flujo ETL Implementado
-
-### 1️⃣ Extract (Extracción)
-Consumo de API mediante solicitudes HTTP para obtener datos en formato JSON.
-
-### 2️⃣ Transform (Transformación)
-- Limpieza de datos  
-- Conversión de tipos de datos  
-- Eliminación o tratamiento de valores nulos  
-- Normalización de estructuras  
-
-### 3️⃣ Load (Carga)
-- Inserción de datos en PostgreSQL  
-- Diseño de tablas optimizado para análisis posterior  
+- Consulta de películas
+- Visualización de géneros
+- Análisis exploratorio
+- Dashboard interactivo
 
 ---
 
-## 🚀 Cómo Ejecutar los Proyectos
+# 🌐 Aplicaciones Desplegadas
 
-### 1. Clonar el repositorio
+Las aplicaciones de visualización están desplegadas en **Streamlit Cloud**.
+
+### Dashboard Clima
+
+🔗 https://grupo6obregonherediamd1-nra4m8mbxsbytij2tds2ji.streamlit.app/#a1fe1fd5
+
+### Dashboard Películas
+
+🔗 https://etl-peliculas-jngme7pzjzfg2tevwzhxzv.streamlit.app/
+
+---
+
+# ⚙️ Tecnologías Utilizadas
+
+- **Python**
+- **Pandas**
+- **Requests**
+- **PostgreSQL**
+- **SQL**
+- **Streamlit**
+- **JSON**
+- **Git**
+- **GitHub**
+
+---
+
+# 🔄 Flujo ETL del Proyecto
+
+El pipeline implementado sigue la arquitectura clásica de **Extracción → Transformación → Carga**.
+````
+
+    API
+     │
+     │
+ (Extract)
+     │
+     ▼
+
+Datos en JSON
+│
+│
+(Transform)
+│
+▼
+Limpieza y Normalización
+│
+│
+(Load)
+│
+▼
+PostgreSQL
+│
+│
+▼
+Streamlit
+Visualización
+
+````
+
+
+# 🚀 Cómo Ejecutar los Proyectos
+
+## 1 Clonar el repositorio
+
 ```bash
 git clone <url-del-repositorio>
 ```
-### 2. Crear entorno virtual
+2 Entrar al proyecto
+```bash
+cd Grupo6_Obregon_Heredia_MD1
+```
+3 Crear entorno virtual
 ```bash
 python -m venv venv
 ```
-### 3. Activar entorno virtual
+4 Activar entorno virtual
+
+Windows
 ```bash
 venv\Scripts\activate
 ```
-### 4. Instalar dependencias
+Linux / Mac
+```bash
+source venv/bin/activate
+```
+5 Instalar dependencias
 ```bash
 pip install -r requirements.txt
 ```
-### 5. Ejecutar proceso ETL
+6 Ejecutar proceso ETL
 ```bash
-python main.py
+cd etl-proyecto python main.py
 ```
-### 6. Ejecutar aplicación Streamlit
-````bash
+7 Ejecutar Streamlit localmente
+```bash
 streamlit run app.py
-````
-## 🎯 bjetivo Académico
-
-Aplicar conceptos de:
-
-- Procesamiento de datos
-
-- Minería de datos
-
-- Modelado de bases de datos
-
-- Automatización de procesos ETL
-
-- Visualización de información
+```

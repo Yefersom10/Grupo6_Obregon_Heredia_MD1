@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 import os
+import time
 import requests
-import json
 import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
 from pathlib import Path
+from scripts.loader import guardar_datos_en_bd
 import logging
 
-# Cargar .env correctamente
+# Cargar .env
 env_path = Path(__file__).resolve().parents[1] / ".env"
 load_dotenv(dotenv_path=env_path)
 
@@ -51,14 +52,14 @@ class WeatherstackExtractor:
             data = response.json()
 
             if 'error' in data:
-                logger.error(f"Error en API para {ciudad}: {data['error']['info']}")
+                logger.error(f"[ERROR] API para {ciudad}: {data['error']['info']}")
                 return None
 
-            logger.info(f"Datos extraídos para {ciudad}")
+            logger.info(f"[OK] Datos extraidos para {ciudad}")
             return data
 
         except Exception as e:
-            logger.error(f"Error extrayendo datos para {ciudad}: {str(e)}")
+            logger.error(f"[ERROR] Extrayendo datos para {ciudad}: {str(e)}")
             return None
 
     def procesar_respuesta(self, response_data):
@@ -69,20 +70,24 @@ class WeatherstackExtractor:
             return {
                 'ciudad': location.get('name'),
                 'pais': location.get('country'),
+                'latitud': float(location.get('lat', 0)),
+                'longitud': float(location.get('lon', 0)),
                 'temperatura': current.get('temperature'),
+                'sensacion_termica': current.get('feelslike'),
                 'humedad': current.get('humidity'),
+                'velocidad_viento': current.get('wind_speed'),
                 'descripcion': current.get('weather_descriptions', ['N/A'])[0],
+                'codigo_tiempo': current.get('weather_code'),
                 'fecha_extraccion': datetime.now().isoformat(),
             }
 
         except Exception as e:
-            logger.error(f"Error procesando respuesta: {str(e)}")
+            logger.error(f"[ERROR] Procesando respuesta: {str(e)}")
             return None
 
     def ejecutar_extraccion(self):
         datos_extraidos = []
-
-        logger.info(f"Iniciando extracción para {len(self.ciudades)} ciudades...")
+        logger.info(f"Iniciando extraccion para {len(self.ciudades)} ciudades...")
 
         for ciudad in self.ciudades:
             response = self.extraer_clima(ciudad)
@@ -90,18 +95,20 @@ class WeatherstackExtractor:
                 datos_procesados = self.procesar_respuesta(response)
                 if datos_procesados:
                     datos_extraidos.append(datos_procesados)
+            time.sleep(2)
 
         return datos_extraidos
+
 
 if __name__ == "__main__":
     try:
         extractor = WeatherstackExtractor()
         datos = extractor.ejecutar_extraccion()
 
-        df = pd.DataFrame(datos)
-        df.to_csv('data/clima.csv', index=False)
+        if datos:
+            guardar_datos_en_bd(datos)
 
-        print(df)
+        print("Proceso ETL completado correctamente.")
 
     except Exception as e:
-        logger.error(f"Error en extracción: {str(e)}")
+        logger.error(f"[ERROR] En extraccion: {str(e)}")

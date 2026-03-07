@@ -1,14 +1,13 @@
+# Variables de entorno
 .env
+.env.local
 .streamlit/secrets.toml
+
 # Entorno virtual
 venv/
 *.pyc
 __pycache__/
 *.egg-info/
-
-# Variables de entorno
-.env
-.env.local
 
 # Archivos del sistema
 .DS_Store
@@ -22,3 +21,9 @@ logs/
 .vscode/
 .idea/
 *.swp
+
+# Base de datos SQLite (si quedó alguna)
+*.db
+
+# Migraciones generadas (opcional, si no quieres versionar)
+# alembic/versions/

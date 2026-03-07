@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import os
+import time
 import requests
-import json
-import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
+from pathlib import Path
+from scripts.loader import guardar_datos_en_bd
 import logging
 
-# Cargar variables de entorno
-load_dotenv()
+# Cargar .env
+env_path = Path(__file__).resolve().parents[1] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 # Configurar logging
 logging.basicConfig(
@@ -25,13 +27,12 @@ class MovieExtractor:
     def __init__(self):
         self.api_key = os.getenv('API_KEY')
         self.base_url = os.getenv('BASE_URL')
-        self.peliculas = os.getenv('PELICULAS').split(',')
+        self.peliculas = [p.strip() for p in os.getenv('PELICULAS', '').split(',')]
 
         if not self.api_key:
             raise ValueError("API_KEY no configurada en .env")
 
     def extraer_pelicula(self, pelicula):
-        """Extrae datos de una película específica"""
         try:
             params = {
                 'apikey': self.api_key,
@@ -44,18 +45,17 @@ class MovieExtractor:
             data = response.json()
 
             if data.get("Response") == "False":
-                logger.error(f"❌ Error en API para {pelicula}: {data.get('Error')}")
+                logger.error(f"[ERROR] API para {pelicula}: {data.get('Error')}")
                 return None
 
-            logger.info(f"✅ Datos extraídos para {pelicula}")
+            logger.info(f"[OK] Datos extraidos para {pelicula}")
             return data
 
         except Exception as e:
-            logger.error(f"❌ Error extrayendo datos para {pelicula}: {str(e)}")
+            logger.error(f"[ERROR] Extrayendo datos para {pelicula}: {str(e)}")
             return None
 
     def procesar_respuesta(self, response_data):
-        """Procesa la respuesta JSON a formato estructurado"""
         try:
             return {
                 'titulo': response_data.get('Title'),
@@ -65,21 +65,19 @@ class MovieExtractor:
                 'actores': response_data.get('Actors'),
                 'duracion': response_data.get('Runtime'),
                 'calificacion_imdb': response_data.get('imdbRating'),
-                'votos_imdb': response_data.get('imdbVotes'),
+                'recaudacion': response_data.get('BoxOffice'),
                 'idioma': response_data.get('Language'),
                 'pais': response_data.get('Country'),
                 'fecha_extraccion': datetime.now().isoformat()
             }
 
         except Exception as e:
-            logger.error(f"Error procesando respuesta: {str(e)}")
+            logger.error(f"[ERROR] Procesando respuesta: {str(e)}")
             return None
 
     def ejecutar_extraccion(self):
-        """Ejecuta la extracción para todas las películas"""
         datos_extraidos = []
-
-        logger.info(f"Iniciando extracción para {len(self.peliculas)} películas...")
+        logger.info(f"Iniciando extraccion para {len(self.peliculas)} peliculas...")
 
         for pelicula in self.peliculas:
             response = self.extraer_pelicula(pelicula)
@@ -87,6 +85,7 @@ class MovieExtractor:
                 datos_procesados = self.procesar_respuesta(response)
                 if datos_procesados:
                     datos_extraidos.append(datos_procesados)
+            time.sleep(1)
 
         return datos_extraidos
 
@@ -96,23 +95,10 @@ if __name__ == "__main__":
         extractor = MovieExtractor()
         datos = extractor.ejecutar_extraccion()
 
-        # Guardar como JSON
-        with open('data/peliculas_raw.json', 'w') as f:
-            json.dump(datos, f, indent=2)
+        if datos:
+            guardar_datos_en_bd(datos)
 
-        logger.info("📁 Datos guardados en data/peliculas_raw.json")
-
-        # Guardar como CSV
-        df = pd.DataFrame(datos)
-        df.to_csv('data/peliculas.csv', index=False)
-
-        logger.info("📁 Datos guardados en data/peliculas.csv")
-
-        print("\n" + "="*50)
-        print("RESUMEN DE EXTRACCIÓN")
-        print("="*50)
-        print(df.to_string())
-        print("="*50)
+        print("Proceso ETL completado correctamente.")
 
     except Exception as e:
-        logger.error(f"Error en extracción: {str(e)}")
+        logger.error(f"[ERROR] En extraccion: {str(e)}")

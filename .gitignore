@@ -17,13 +17,10 @@ Thumbs.db
 data/
 logs/
 
-# IDEe
+# IDE
 .vscode/
 .idea/
 *.swp
 
-# Base de datos SQLite (si quedó alguna)
+# Base de datos SQLite
 *.db
-
-# Migraciones generadas (opcional, si no quieres versionar)
-# alembic/versions/

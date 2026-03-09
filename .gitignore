@@ -1,7 +1,7 @@
 # Variables de entorno
 .env
 .env.local
-.streamlit/secrets.toml
+**/.streamlit/secrets.toml
 
 # Entorno virtual
 venv/

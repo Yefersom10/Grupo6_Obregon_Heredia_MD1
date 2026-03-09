@@ -17,7 +17,7 @@ Thumbs.db
 data/
 logs/
 
-# IDE
+# IDEe
 .vscode/
 .idea/
 *.swp

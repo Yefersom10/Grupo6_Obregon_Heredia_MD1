@@ -1,26 +1,56 @@
-# Variables de entorno
+# ==============================
+# VARIABLES DE ENTORNO
+# ==============================
 .env
-.env.local
+.env.*
+*.env
 **/.streamlit/secrets.toml
 
-# Entorno virtual
+# ==============================
+# ENTORNO VIRTUAL
+# ==============================
 venv/
-*.pyc
-__pycache__/
-*.egg-info/
+.venv/
+env/
 
-# Archivos del sistema
+# ==============================
+# PYTHON
+# ==============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# ==============================
+# STREAMLIT
+# ==============================
+.streamlit/config.toml
+
+# ==============================
+# ARCHIVOS DEL SISTEMA
+# ==============================
 .DS_Store
 Thumbs.db
 
-# Datos locales
+# ==============================
+# DATOS LOCALES
+# ==============================
 data/
 logs/
+*.log
 
-# IDE
+# ==============================
+# BASES DE DATOS
+# ==============================
+*.db
+*.sqlite3
+
+# ==============================
+# IDEs
+# ==============================
 .vscode/
 .idea/
 *.swp
-
-# Base de datos SQLite
-*.db

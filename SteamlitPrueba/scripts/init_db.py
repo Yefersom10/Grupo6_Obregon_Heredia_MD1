@@ -1,6 +1,10 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from scripts.database import engine, Base
-from scripts import models  # IMPORTANTE: carga los modelos
+from scripts import models  
 
-Base.metadata.create_all(bind=engine)
-
-print("Tablas creadas correctamente")
+if __name__ == "__main__":
+    print("Creando tablas en Supabase...")
+    Base.metadata.create_all(bind=engine)
+    print("✅ Tablas verificadas/creadas correctamente")

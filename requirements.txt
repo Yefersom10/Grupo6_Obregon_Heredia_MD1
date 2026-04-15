@@ -10,3 +10,11 @@ matplotlib
 openpyxl
 alembic
 requests
+# ── Jupyter Notebook + Análisis estadístico (Etl-Prueba) ──────
+jupyter
+notebook
+ipykernel
+scikit-learn
+statsmodels
+scipy
+seaborn

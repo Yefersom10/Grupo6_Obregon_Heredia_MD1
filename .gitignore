@@ -54,3 +54,7 @@ logs/
 .vscode/
 .idea/
 *.swp
+# ==============================
+# JUPYTER NOTEBOOK
+# ==============================
+.ipynb_checkpoints/

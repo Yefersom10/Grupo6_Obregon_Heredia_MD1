@@ -4,29 +4,33 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-purple)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-Machine%20Learning-orange)
 ![API](https://img.shields.io/badge/API-Data%20Source-green)
 ![Status](https://img.shields.io/badge/Status-Academic%20Project-orange)
 
 Repositorio del proyecto desarrollado para la asignatura **Minería de Datos**.
 
-En este proyecto se implementan procesos **ETL (Extract, Transform, Load)** utilizando **APIs públicas**, almacenamiento en **PostgreSQL** y visualización de datos mediante **Streamlit**.
+En este proyecto se implementan procesos **ETL (Extract, Transform, Load)** utilizando **APIs públicas**, almacenamiento en **PostgreSQL**, visualización de datos mediante **Streamlit** y modelos de **Machine Learning** usando **scikit-learn**.
 
-El repositorio contiene dos tipos de implementaciones:
+El repositorio contiene:
 
-- **Procesos ETL ejecutados en local**
-- **Aplicaciones de visualización desplegadas en Streamlit Cloud**
+- Procesos ETL ejecutados en local
+- Dashboards interactivos con Streamlit
+- Modelos de Machine Learning supervisado
+- Notebooks de análisis y evaluación
 
 ---
 
 # 👥 Integrantes
 
-- **Nicolás Obregón**  
+- **Nicolás Obregón**
 - **Yeferson Heredia**
 
 ---
 
 # 📁 Estructura del Repositorio
-```
+
+```text
 Grupo6_Obregon_Heredia_MD1/
 │
 ├── Etl-Prueba/
@@ -61,12 +65,26 @@ Grupo6_Obregon_Heredia_MD1/
 │   ├── .env
 │   └── requirements.txt
 │
+├── notebooks/
+│   ├── arbol_decision_regresion.ipynb
+│   ├── arbol_clasificacion_binaria.ipynb
+│   ├── regresion_logistica_binaria.ipynb
+│   └── regresion_peliculas.ipynb
+│
+├── data/
+│   └── graficas/
+│       ├── arbol_decision_regresion/
+│       ├── arbol_clasificacion_binaria/
+│       └── regresion_logistica_binaria/
+│
 ├── streamlitPrueba/
 │   └── Dashboard de clima
 │
 ├── streamlitProyecto/
 │   └── Dashboard de películas
 │
+├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
@@ -76,57 +94,44 @@ Grupo6_Obregon_Heredia_MD1/
 
 ## 🔹 Etl-Prueba
 
-Implementación de un **proceso ETL guiado por el docente** para comprender la estructura básica de un pipeline de datos.
+Implementación de un proceso ETL guiado por el docente para comprender la estructura básica de un pipeline de datos.
 
-**Características**
+### Características
 
 - Tipo: ETL de práctica
-- Fuente de datos: API de clima (Weatherstack)
+- Fuente de datos: API Weatherstack
 - Base de datos: PostgreSQL local
 - Ejecución: Local
 
-**Objetivos**
+### Objetivos
 
 - Consumir datos desde una API
 - Transformar y limpiar datos
 - Guardar información en PostgreSQL
 - Visualizar datos con Streamlit
 
-**Scripts principales**
+### Scripts principales
 
-- `extractor.py` — Extrae datos climáticos de la API Weatherstack
-- `loader.py` — Transforma y carga los datos en PostgreSQL
-- `models.py` — Define las tablas: `ciudades`, `registros_clima`, `metricas_etl`
-- `database.py` — Configura la conexión a PostgreSQL via SQLAlchemy
-- `consultas.py` — Consultas de análisis sobre los datos guardados
-- `test_db.py` — Verifica la conexión y estado de la base de datos
+- `extractor.py` — Extrae datos climáticos desde Weatherstack
+- `loader.py` — Transforma y carga datos en PostgreSQL
+- `models.py` — Define las tablas del sistema
+- `database.py` — Configuración SQLAlchemy
+- `consultas.py` — Consultas analíticas
+- `test_db.py` — Verificación de conexión
 
-**Ciudades monitoreadas**
+### Dashboards disponibles
 
-Bogotá, Medellín, Cali, Barranquilla
-
-**Dashboards disponibles**
-
-- `dashboard_app.py` — Vista general con métricas y gráficas
-- `dashboard_advanced.py` — Análisis avanzado con histórico y métricas ETL
-- `dashboard_interactive.py` — Dashboard con filtros interactivos y descarga CSV
+- `dashboard_app.py`
+- `dashboard_advanced.py`
+- `dashboard_interactive.py`
 
 ---
 
 ## 🔹 Etl-Proyecto
 
-Proyecto principal desarrollado por el grupo.
+Proyecto principal desarrollado por el grupo utilizando la API OMDb para análisis de películas.
 
-Se implementa un **pipeline ETL completo** para recolectar información de películas utilizando **OMDb API**.
-
-**Características**
-
-- Tipo: ETL principal del proyecto
-- Fuente de datos: OMDb API
-- Base de datos: PostgreSQL local
-- Ejecución: Local
-
-**Datos obtenidos**
+### Datos obtenidos
 
 - Título
 - Año
@@ -134,67 +139,139 @@ Se implementa un **pipeline ETL completo** para recolectar información de pelí
 - Director
 - Actores
 - Duración
-- Calificación IMDB
-- Recaudación en taquilla
-- Idioma y país
+- Rating IMDB
+- Recaudación
+- Idioma
+- País
 
-**Objetivos**
+### Objetivos
 
 - Construir un pipeline ETL completo
-- Normalizar datos desde la API
-- Diseñar una base de datos optimizada en PostgreSQL
-- Preparar los datos para análisis y visualización
+- Normalizar datos desde API
+- Diseñar una base de datos optimizada
+- Preparar los datos para análisis predictivo
 
-**Scripts principales**
+### Scripts principales
 
-- `extractor.py` — Extrae datos de películas desde OMDb API
-- `loader.py` — Transforma y carga los datos en PostgreSQL
-- `models.py` — Define las tablas: `peliculas`, `registro_peliculas`, `metricas_etl`
-- `database.py` — Configura la conexión a PostgreSQL via SQLAlchemy
-- `consultas.py` — Consultas de análisis: mejor rating, mayor recaudación, etc.
-- `test_db.py` — Verifica la conexión y estado de la base de datos
+- `extractor.py`
+- `loader.py`
+- `models.py`
+- `database.py`
+- `consultas.py`
+- `test_db.py`
 
-**Dashboards disponibles**
+### Dashboards disponibles
 
-- `dashboard_app.py` — Vista general con métricas, gráficas y histórico
-- `dashboard_interactive.py` — Dashboard con filtros por película, fecha y rating
-
----
-
-## 🔹 streamlitPrueba
-
-Aplicación web desarrollada con **Streamlit** para visualizar datos climáticos obtenidos en el ETL de prueba.
-
-Funcionalidades:
-
-- Visualización de datos
-- Gráficas interactivas
-- Exploración de información
+- `dashboard_app.py`
+- `dashboard_interactive.py`
 
 ---
 
-## 🔹 streamlitProyecto
+# 🤖 Modelos de Machine Learning
 
-Aplicación web desarrollada con **Streamlit** para visualizar y analizar datos de películas.
+El proyecto incluye notebooks desarrollados con **scikit-learn** para aplicar técnicas de aprendizaje supervisado sobre los datos almacenados en PostgreSQL.
 
-Funcionalidades:
+---
 
-- Consulta de películas
-- Visualización de géneros
-- Análisis exploratorio
-- Dashboard interactivo
+## 🌳 Árbol de Decisión para Regresión
+
+Modelo implementado utilizando:
+
+```python
+DecisionTreeRegressor
+```
+
+### Objetivo
+
+Predecir variables numéricas relacionadas con películas utilizando árboles de decisión.
+
+### Incluye
+
+- Entrenamiento del modelo
+- Evaluación de métricas
+- Visualización del árbol
+- Predicciones
+- Exportación de gráficas
+
+---
+
+## 🌳 Árbol de Decisión para Clasificación Binaria (1-0)
+
+Modelo implementado utilizando:
+
+```python
+DecisionTreeClassifier
+```
+
+### Objetivo
+
+Clasificar películas en categorías binarias utilizando variables numéricas del dataset.
+
+### Incluye
+
+- Creación de variable objetivo binaria
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Matriz de confusión
+- Visualización del árbol de decisión
+
+---
+
+## 📊 Regresión Logística Binaria (1-0)
+
+Modelo implementado utilizando:
+
+```python
+LogisticRegression
+```
+
+### Objetivo
+
+Predecir probabilidades de clasificación binaria usando regresión logística.
+
+### Incluye
+
+- Escalado de variables con StandardScaler
+- Entrenamiento y validación
+- Curvas ROC
+- ROC-AUC
+- Matrices de confusión
+- Comparación de métricas
+- Importancia de variables
+
+---
+
+# 📈 Gráficas Generadas
+
+Los notebooks generan automáticamente gráficas almacenadas en:
+
+```text
+data/graficas/
+```
+
+### Gráficas incluidas
+
+- Árboles de decisión
+- Curvas ROC
+- Matrices de confusión
+- Comparación de métricas
+- Distribución de clases
+- Importancia de variables
+- Predicciones y resultados
 
 ---
 
 # 🌐 Aplicaciones Desplegadas
 
-Las aplicaciones de visualización están desplegadas en **Streamlit Cloud**.
+Las aplicaciones están desplegadas en Streamlit Cloud.
 
-### Dashboard Clima
+## Dashboard Clima
 
 🔗 https://grupo6obregonherediamd1-nra4m8mbxsbytij2tds2ji.streamlit.app/#a1fe1fd5
 
-### Dashboard Películas
+## Dashboard Películas
 
 🔗 https://etl-peliculas-jngme7pzjzfg2tevwzhxzv.streamlit.app/
 
@@ -202,136 +279,183 @@ Las aplicaciones de visualización están desplegadas en **Streamlit Cloud**.
 
 # ⚙️ Tecnologías Utilizadas
 
-- **Python**
-- **Pandas**
-- **Requests**
-- **PostgreSQL**
-- **SQLAlchemy**
-- **Alembic**
-- **Streamlit**
-- **Plotly**
-- **python-dotenv**
-- **JSON**
-- **Git**
-- **GitHub**
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- scikit-learn
+- Requests
+- PostgreSQL
+- SQLAlchemy
+- Alembic
+- Streamlit
+- Plotly
+- python-dotenv
+- JSON
+- Git
+- GitHub
 
 ---
 
 # 🔄 Flujo ETL del Proyecto
 
-El pipeline implementado sigue la arquitectura clásica de **Extracción → Transformación → Carga**.
-```
-    API
-     │
-     │
- (Extract)
-     │
-     ▼
-Datos en JSON
-     │
-     │
-(Transform)
-     │
-     ▼
-Limpieza y Normalización
-     │
-     │
-  (Load)
-     │
-     ▼
-PostgreSQL
-     │
-     │
-     ▼
-  Streamlit
-Visualización
+El pipeline implementado sigue la arquitectura clásica:
+
+```text
+        API
+         │
+         ▼
+     Extracción
+         │
+         ▼
+   Datos en JSON
+         │
+         ▼
+   Transformación
+         │
+         ▼
+ Limpieza y Normalización
+         │
+         ▼
+      PostgreSQL
+         │
+         ▼
+    Machine Learning
+         │
+         ▼
+      Streamlit
 ```
 
 ---
 
-# 🚀 Cómo Ejecutar los Proyectos Localmente
+# 🚀 Cómo Ejecutar el Proyecto
 
 ## 1 — Clonar el repositorio
+
 ```bash
-git clone 
+git clone <URL_DEL_REPOSITORIO>
 ```
+
+---
 
 ## 2 — Entrar al proyecto
+
 ```bash
-cd Grupo6_Obregon_Heredia_MD1/Etl-Prueba
-# o
-cd Grupo6_Obregon_Heredia_MD1/Etl-Proyecto
+cd Grupo6_Obregon_Heredia_MD1
 ```
 
+---
+
 ## 3 — Crear entorno virtual
+
 ```bash
 python -m venv venv
 ```
 
+---
+
 ## 4 — Activar entorno virtual
 
-Windows:
+### Windows
+
 ```bash
 venv\Scripts\activate
 ```
 
-Linux / Mac:
+### Linux / Mac
+
 ```bash
 source venv/bin/activate
 ```
 
+---
+
 ## 5 — Instalar dependencias
+
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ## 6 — Configurar variables de entorno
 
-Crea un archivo `.env` en la raíz del proyecto:
-```env
-# Para Etl-Prueba
-DATABASE_URL=postgresql://postgres:tu_contraseña@localhost:5432/weatherstack_etl
-API_KEY=tu_api_key
-WEATHERSTACK_BASE_URL=http://api.weatherstack.com
-CIUDADES=Bogota,Medellin,Cali,Barranquilla
+Crear archivo `.env`
 
-# Para Etl-Proyecto
-DATABASE_URL=postgresql://postgres:tu_contraseña@localhost:5432/peliculas_etl
+```env
+# Weatherstack
+DATABASE_URL=postgresql://postgres:password@localhost:5432/weatherstack_etl
+API_KEY=tu_api_key_weatherstack
+WEATHERSTACK_BASE_URL=http://api.weatherstack.com
+
+# OMDb
+DATABASE_URL=postgresql://postgres:password@localhost:5432/peliculas_etl
 API_KEY=tu_api_key_omdb
 BASE_URL=http://www.omdbapi.com/
-PELICULAS=Inception,Interstellar,The Dark Knight,Parasite,Avatar
 ```
 
-## 7 — Crear la base de datos en PostgreSQL
-```bash
-psql -U postgres
-CREATE DATABASE weatherstack_etl;  -- Para Etl-Prueba
-CREATE DATABASE peliculas_etl;     -- Para Etl-Proyecto
-\q
+---
+
+## 7 — Crear bases de datos
+
+```sql
+CREATE DATABASE weatherstack_etl;
+CREATE DATABASE peliculas_etl;
 ```
 
-## 8 — Aplicar migraciones
+---
+
+## 8 — Ejecutar migraciones
+
 ```bash
 alembic upgrade head
 ```
 
-## 9 — Verificar conexión
-```bash
-python -m scripts.test_db
-```
+---
 
-## 10 — Ejecutar el ETL
+## 9 — Ejecutar ETL
+
 ```bash
 python -m scripts.extractor
 ```
 
-## 11 — Ejecutar consultas de análisis
-```bash
-python -m scripts.consultas
-```
+---
 
-## 12 — Correr los dashboards
+## 10 — Ejecutar dashboards
+
 ```bash
 streamlit run dashboard_app.py
-streamlit run dashboard_advanced.py      # Solo Etl-Prueba
-streamlit run dashboard_interactive.py
+```
+
+---
+
+## 11 — Ejecutar notebooks
+
+Abrir la carpeta `notebooks/` en:
+
+- Jupyter Notebook
+- VSCode
+- JupyterLab
+
+y ejecutar las celdas secuencialmente.
+
+---
+
+# 📌 Resultados del Proyecto
+
+El proyecto integra:
+
+- ETL completo desde APIs públicas
+- PostgreSQL como almacenamiento principal
+- Dashboards interactivos
+- Modelos de Machine Learning
+- Evaluación comparativa de modelos
+- Exportación de gráficas y métricas
+- Notebooks documentados para análisis académico
+
+---
+
+# 📄 Licencia
+
+Proyecto académico desarrollado para fines educativos en la asignatura de Minería de Datos.
